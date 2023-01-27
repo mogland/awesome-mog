@@ -38,14 +38,25 @@ function rp(token: keyof typeof COMMENTS) {
   return `<!-- ${COMMENTS[token]} -->`
 }
 
+function removeDuplicateKey(arr: any[], key: string) {
+// 在 arr 里面去除掉 repo 重复的对象，保留第一个
+  const newArr = arr.filter((item, index) => {
+    return arr.indexOf(item) === index
+  })
+  newArr.sort((a, b) => {
+    return a[key].localeCompare(b[key])
+  })
+  newArr.forEach((item, index) => {
+    if (item[key] === newArr[index + 1]?.[key]) {
+      newArr.splice(index, 1)
+    }
+  });
+  return newArr
+}
+
 function mergeArray(arr1: any[], arr2: any[]) {
-  arr1 = arr1.filter((item, index) => {
-    return arr1.indexOf(item) === index
-  })
-  arr2 = arr2.filter((item, index) => {
-    return arr2.indexOf(item) === index
-  })
-  const arr = arr1.concat(arr2)
+  let arr = arr1.concat(arr2)
+  arr = removeDuplicateKey(arr, 'repo')
   const newArr = arr.filter((item, index) => {
     return arr.indexOf(item) === index // 去重
   })
