@@ -60,6 +60,9 @@ function mergeArray(arr1: any[], arr2: any[]) {
   const newArr = arr.filter((item, index) => {
     return arr.indexOf(item) === index // 去重
   })
+  newArr.sort((a, b) => {
+    return a.repo.localeCompare(b.repo)
+  })
   return newArr
 }
 
