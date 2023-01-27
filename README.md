@@ -18,16 +18,17 @@
 
 **社区**
 
-<ul><li><a href="https://github.com/wibus-wee/mog-theme-iucky">wibus-wee/mog-theme-iucky</a> - I am lucky. 首款使用博客命名的主题</li><li><a href="https://github.com/mogland/mog-A-My">mogland/mog-A-My</a> - 😇 Be self-centered, by rz.sb</li></ul>
+<ul><li><a href="https://github.com/wibus-wee/mog-theme-iucky">wibus-wee/mog-theme-iucky</a> - I am lucky. 首款使用博客命名的主题</li><li><a href="https://github.com/mogland/mog-A-My">mogland/mog-A-My</a> - 😇 Be self-centered, by rz.sb</li><li><a href="https://github.com/mogland/mog-A-My">mogland/mog-A-My</a> - 😇 Be self-centered, by rz.sb</li></ul>
 
 ## 前端主题
 
 **官方**
 
+- [Mog-Theme-Tiny-EJS](https://github.com/mogland-dev/Mog-Theme-Tiny-EJS) - Tiny 主题 EJS 版本
 
 **社区**
 
-<ul><li><a href="https://github.com/mogland-dev/Mog-Theme-Tiny-EJS">mogland-dev/Mog-Theme-Tiny-EJS</a> - Tiny EJS 版本</li></ul>
+<ul></ul>
 
 ## 主题组件
 
@@ -35,4 +36,4 @@
 
 **社区**
 
-<ul><li><a href="https://github.com/mogland-dev/declared-mog-comments-react">mogland-dev/declared-mog-comments-react</a> - [DECLARED | 已弃用] 为使用 React 打造的前端评论区组件</li></ul>
+<ul></ul>
