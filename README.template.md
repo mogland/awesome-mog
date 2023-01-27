@@ -24,6 +24,7 @@
 
 **官方**
 
+- [Mog-Theme-Tiny-EJS](https://github.com/mogland-dev/Mog-Theme-Tiny-EJS) - Tiny 主题 EJS 版本
 
 **社区**
 
