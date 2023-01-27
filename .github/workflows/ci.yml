@@ -46,7 +46,7 @@ jobs:
       - name: Typecheck
         run: nr typecheck
 
-  test:
+  build:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -69,4 +69,6 @@ jobs:
         run: nci
 
       - name: Build
-        run: node dist/index.mjs
+        run: |
+          nr build
+          node dist/index.mjs
