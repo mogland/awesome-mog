@@ -27,19 +27,11 @@ async function fetchGitHubReposWithTags(key: keyof typeof FETCH_TAGS) {
 }
 
 function generateListItem(name: string, description?: string) {
-  return `
-<li>
-<a href="https://github.com/${name}">${name}</a> - ${description}
-</li>
-  `
+  return `<li><a href="https://github.com/${name}">${name}</a> - ${description}</li>`
 }
 
 function generateList(items: any[]) {
-  return `
-<ul>
-${items.map((item) => generateListItem(item.repo, item.description)).join('')}
-</ul>
-  `
+  return `<ul>${items.map((item) => generateListItem(item.repo, item.description)).join('')}</ul>`
 }
 
 function rp(token: keyof typeof COMMENTS) {
@@ -92,6 +84,13 @@ async function main() {
 
   await rm("./README.md", { force: true })
   await writeFile("./README.md", newContent, "utf-8")
+  
+  await rm(MOG_LIST_PATH.MogThemeCommunity, { force: true })
+  await writeFile(MOG_LIST_PATH.MogThemeCommunity, JSON.stringify(themes), "utf-8")
+  await rm(MOG_LIST_PATH.MogThemeAppCommunity, { force: true })
+  await writeFile(MOG_LIST_PATH.MogThemeAppCommunity, JSON.stringify(themeApps), "utf-8")
+  await rm(MOG_LIST_PATH.MogThemeComponentCommunity, { force: true })
+  await writeFile(MOG_LIST_PATH.MogThemeComponentCommunity, JSON.stringify(themeComponents), "utf-8")
 }
 
 main().then(() => {
