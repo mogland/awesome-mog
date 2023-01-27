@@ -6,7 +6,7 @@
 
 ## 核心生态
 
-- [Core](https://github.com/mogland/core -, Mog 的核心服务端, 包含众多服务
+- [Core](https://github.com/mogland/core) -, Mog 的核心服务端, 包含众多服务
 - [Console](https://github.com/mogland/console) - Mog 的基本控制台。包含了最基础且最全面的功能
 
 ## 前端程序
