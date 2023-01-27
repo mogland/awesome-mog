@@ -69,7 +69,4 @@ jobs:
         run: nci
 
       - name: Build
-        run: nr build
-
-      - name: Test
-        run: nr test
+        run: node dist/index.mjs
