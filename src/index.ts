@@ -1,6 +1,6 @@
 import { readFile, rm, writeFile } from "fs/promises"
 import { ofetch } from "ofetch"
-import { COMMENTS, FETCH_EXCLUDE_TAGS, FETCH_TAGS, MOG_LIST_PATH } from './constant';
+import { COMMENTS, FETCH_EXCLUDE_TAGS, FETCH_OFFICIAL_TAGS, FETCH_TAGS, MOG_LIST_PATH, MOG_LIST_PRODUCTION_PATH } from './constant';
 
 const githubAPIEndPoint = 'https://api.github.com'
 const userAgent =
@@ -13,12 +13,13 @@ const fetch = ofetch.create({
   },
 })
 
-async function fetchGitHubReposWithTags(key: keyof typeof FETCH_TAGS) {
-  const tags = [FETCH_TAGS[key]]
-  const excludeTags = FETCH_EXCLUDE_TAGS[key]
+async function fetchGitHubReposWithTags(key: keyof typeof FETCH_TAGS | keyof typeof FETCH_OFFICIAL_TAGS, isOfficial?: boolean) {
+  const tags = isOfficial ? [FETCH_OFFICIAL_TAGS[key]] : [FETCH_TAGS[key]]
+  const excludeTags = isOfficial ? [] : [FETCH_EXCLUDE_TAGS[key]]
   const query = tags.map((tag) => `topic:${tag}`).join('+')
   const excludeQuery = excludeTags.map((tag) => `-topic:${tag}`).join('+')
   const url = `/search/repositories?q=${query}+${excludeQuery}&sort=stars&order=desc&per_page=100`
+  console.log(url)
   const res = await fetch(url).then((res) => res.items.map((item: { full_name: string; description: string; }) => ({
     repo: item.full_name,
     description: item.description
@@ -70,11 +71,12 @@ async function main() {
   const template = await readFile("./README.template.md", "utf-8")
   let newContent = template;
 
+  // ===Community===
   const getThemeDetails = await Promise.all([
     await readFile(MOG_LIST_PATH.MogThemeCommunity, "utf-8"),
     fetchGitHubReposWithTags("MogThemeCommunity")
   ])
-  const themes = mergeArray(JSON.parse(getThemeDetails[0]), getThemeDetails[1])
+  let themes = mergeArray(JSON.parse(getThemeDetails[0]), getThemeDetails[1])
   newContent = newContent.replace(
     rp("MogThemeCommunity"),
     generateList(themes)
@@ -85,7 +87,7 @@ async function main() {
     fetchGitHubReposWithTags("MogThemeAppCommunity")
   ])
 
-  const themeApps = mergeArray(JSON.parse(getThemeAppDetails[0]), getThemeAppDetails[1])  
+  let themeApps = mergeArray(JSON.parse(getThemeAppDetails[0]), getThemeAppDetails[1])  
   newContent = newContent.replace(
     rp("MogThemeAppCommunity"),
     generateList(themeApps)
@@ -96,21 +98,49 @@ async function main() {
     fetchGitHubReposWithTags("MogThemeComponentCommunity")
   ])
   
-  const themeComponents = mergeArray(JSON.parse(getThemeComponentDetails[0]), getThemeComponentDetails[1])
+  let themeComponents = mergeArray(JSON.parse(getThemeComponentDetails[0]), getThemeComponentDetails[1])
   newContent = newContent.replace(
     rp("MogThemeComponentCommunity"),
     generateList(themeComponents)
   )
 
+  // ===Official===
+  const getThemeDetailsOfficial = await Promise.all([
+    fetchGitHubReposWithTags("MogThemeCommunity", true)
+  ])
+  themes = mergeArray(themes, getThemeDetailsOfficial[0])
+  newContent = newContent.replace(
+    rp("MogThemeOfficial"),
+    generateList(getThemeDetailsOfficial[0])
+  )
+
+  const getThemeAppDetailsOfficial = await Promise.all([
+    fetchGitHubReposWithTags("MogThemeAppCommunity", true)
+  ])
+  themeApps = mergeArray(themeApps, getThemeAppDetailsOfficial[0])
+  newContent = newContent.replace(
+    rp("MogThemeAppOfficial"),
+    generateList(getThemeAppDetailsOfficial[0])
+  )
+    
+  const getThemeComponentDetailsOfficial = await Promise.all([
+    fetchGitHubReposWithTags("MogThemeComponentCommunity", true)
+  ])
+  themeComponents = mergeArray(themeComponents, getThemeComponentDetailsOfficial[0])
+  newContent = newContent.replace(
+    rp("MogThemeComponentOfficial"),
+    generateList(getThemeComponentDetailsOfficial[0])
+  )
+
   await rm("./README.md", { force: true })
   await writeFile("./README.md", newContent, "utf-8")
   
-  await rm(MOG_LIST_PATH.MogThemeCommunity, { force: true })
-  await writeFile(MOG_LIST_PATH.MogThemeCommunity, JSON.stringify(themes), "utf-8")
-  await rm(MOG_LIST_PATH.MogThemeAppCommunity, { force: true })
-  await writeFile(MOG_LIST_PATH.MogThemeAppCommunity, JSON.stringify(themeApps), "utf-8")
-  await rm(MOG_LIST_PATH.MogThemeComponentCommunity, { force: true })
-  await writeFile(MOG_LIST_PATH.MogThemeComponentCommunity, JSON.stringify(themeComponents), "utf-8")
+  await rm(MOG_LIST_PRODUCTION_PATH.MogThemeCommunity, { force: true })
+  await writeFile(MOG_LIST_PRODUCTION_PATH.MogThemeCommunity, JSON.stringify(themes), "utf-8")
+  await rm(MOG_LIST_PRODUCTION_PATH.MogThemeAppCommunity, { force: true })
+  await writeFile(MOG_LIST_PRODUCTION_PATH.MogThemeAppCommunity, JSON.stringify(themeApps), "utf-8")
+  await rm(MOG_LIST_PRODUCTION_PATH.MogThemeComponentCommunity, { force: true })
+  await writeFile(MOG_LIST_PRODUCTION_PATH.MogThemeComponentCommunity, JSON.stringify(themeComponents), "utf-8")
 }
 
 main().then(() => {
