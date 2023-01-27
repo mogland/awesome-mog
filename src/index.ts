@@ -94,4 +94,6 @@ async function main() {
   await writeFile("./README.md", newContent, "utf-8")
 }
 
-main()
+main().then(() => {
+  console.log("Awesome Mog List updated!")
+})
