@@ -23,7 +23,7 @@
 
 **官方**
 
-<ul><li><a href="https://github.com/mogland-dev/mog-theme-tiny-ejs">mogland-dev/mog-theme-tiny-ejs</a> - [Dev] Tiny Theme. (v.EJS)</li></ul>
+<ul><li><a href="https://github.com/mogland-dev/mog-theme-tiny-ejs">mogland-dev/mog-theme-tiny-ejs</a> - Tiny 主题 EJS 版本 | 极简风格</li></ul>
 
 **社区**
 
