@@ -9,6 +9,10 @@
 - [Core](https://github.com/mogland/core) -, Mog 的核心服务端, 包含众多服务
 - [Console](https://github.com/mogland/console) - Mog 的基本控制台。包含了最基础且最全面的功能
 
+## 服务模块
+
+- [@mogland-dev/mog-render-service](https://github.com/mogland-dev/mog-render-service) - Markdown & Djot 渲染服务，加入短代码与文本宏等特性
+
 ## 前端程序
 
 **官方**
