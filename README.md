@@ -17,7 +17,7 @@
 
 **官方**
 
-<ul><li><a href="https://github.com/mogland/mog-A-My">mogland/mog-A-My</a> - 😇 Be self-centered, by rz.sb</li></ul>
+<ul></ul>
 
 **社区**
 
