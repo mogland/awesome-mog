@@ -21,7 +21,7 @@
 
 **社区**
 
-<ul><li><a href="https://github.com/mogland/mog-A-My">mogland/mog-A-My</a> - 😇 Be self-centered, by rz.sb</li><li><a href="https://github.com/wibus-wee/mog-theme-iucky">wibus-wee/mog-theme-iucky</a> - I am lucky. 首款使用博客命名的主题</li></ul>
+<ul></ul>
 
 ## 前端主题
 
