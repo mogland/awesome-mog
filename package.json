@@ -57,7 +57,7 @@
   "devDependencies": {
     "@innei-util/eslint-config-ts": "0.8.2",
     "@innei-util/prettier": "0.8.2",
-    "@innei/eslint-config-ts": "0.9.7",
+    "@innei/eslint-config-ts": "0.9.10",
     "@types/node": "18.11.18",
     "bumpp": "8.2.1",
     "eslint": "8.32.0",
