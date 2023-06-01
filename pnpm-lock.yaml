@@ -1,4 +1,8 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
+
+settings:
+  autoInstallPeers: false
+  excludeLinksFromLockfile: false
 
 dependencies:
   ofetch:
@@ -34,8 +38,8 @@ devDependencies:
     specifier: 13.0.4
     version: 13.0.4
   pnpm:
-    specifier: 7.17.1
-    version: 7.17.1
+    specifier: 7.33.0
+    version: 7.33.0
   prettier:
     specifier: 2.8.3
     version: 2.8.3
@@ -3387,8 +3391,8 @@ packages:
       pathe: 1.0.0
     dev: true
 
-  /pnpm@7.17.1:
-    resolution: {integrity: sha512-O76jPxzoeja81Z/8YyTfuXt+f7qkpsyEJsNBreWYBLHY5rJkjvNE/bIUGQ2uD/rcYPEtmrZZYox21OjAMC9EGw==}
+  /pnpm@7.33.0:
+    resolution: {integrity: sha512-Mx97pT+pbYWesDFARX3YbBADaXHQ8G5uZALx4WsbQVprGWFfTM+eSCygWUrhJ/KX6Qr51S7SwB6DTjFPx+8YHw==}
     engines: {node: '>=14.6'}
     hasBin: true
     dev: true
